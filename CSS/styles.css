@@ -25,6 +25,9 @@
     --color-pokemon10-slider:#7573adac;
 
 }
+html{
+    scroll-behavior: smooth;
+}
 header,.container-banner,.container-popular,.container-all-pokemons,.container-all-pokemons .card-container{
     width: 100%;
     height: auto;
@@ -61,7 +64,7 @@ header{
     height: auto;
     cursor: pointer;
     margin: 10px auto;
-    padding: 10px 0;
+    padding: 10px 5px;
     border: none;
     border-radius: 20px;
     text-transform: uppercase;
@@ -70,6 +73,11 @@ header{
     box-shadow: 2px 3px 2px var(--white-complement);
     animation-name:banner-colors;
 }
+.container-btn-banner .btn-poke a{
+    text-decoration: none;
+    color: var(--black-complement);
+}
+
 .container-btn-banner .btn-poke:hover{
     transition: .5s;
     box-shadow: -2px 3px 0px var(--white-complement);
@@ -79,11 +87,12 @@ header{
     height: 50vh;
 
     background-image:url("../IMG/banner-img1.png");
-    background-size: 65%;
+    background-size: 60%;
     background-position: center center;
     background-repeat: no-repeat;
     background-color: var(--color-pokemon1-banner);
     padding: 20px;
+    margin-top: 20px;
     border-radius: 50% 50% 0 0;
     animation-name: banner-img ,banner-colors;
 }
@@ -188,9 +197,6 @@ swiper-slide:nth-child(10){
     text-align: center;
     text-transform: capitalize;
     margin:10px;
-    /* background-color: #A2FAA3; */
-    /* background-color: #FFEA70; */
-    background-color: #E898AA;
 }
 .type-container p{
     width: 40%;
@@ -201,11 +207,11 @@ swiper-slide:nth-child(10){
 
 .img-container{
     width:100%;
-    border-radius: 10px;
 }
 .img-container img{
     width:100%;
     height: auto;
+    border-radius: 50%;
 }
 .stats-container{
     width: 100%;
@@ -216,7 +222,7 @@ swiper-slide:nth-child(10){
     flex-wrap: wrap;
 }
 .stats-container div{
-    width: 50%;
+    width: 30%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -239,9 +245,12 @@ swiper-slide:nth-child(10){
     color: var(--black-complement);
 }
 
-@media screen and (min-width:800px){
+@media screen and (min-width:700px){
     .container-banner-pokemon{
         background-size: 40%;
+    }
+    .container-btn-banner .btn-poke{
+        width: 20%;
     }
     swiper-slide{
     width: 100%;
@@ -253,6 +262,9 @@ swiper-slide:nth-child(10){
     
 }
 @media screen and (min-width:900px){
+    header{
+        flex-wrap: nowrap;
+    }
     .container-banner-pokemon{
         background-size: 40%;
         flex-wrap: wrap;
@@ -273,7 +285,8 @@ swiper-slide:nth-child(10){
         background-size: 55%;
     }
     .container-btn-banner .btn-poke{
-        width: 20%;
+        width: 30%;
+        font-size: 1.5vw;
     }
     .container-popular h2{
         font-size: 3.5vw;
@@ -293,6 +306,9 @@ swiper-slide:nth-child(10){
     }
     .search{
         width:35%;
+    }
+    .bx-search-alt{
+        font-size: 3vw;    
     }
 }
 @keyframes banner-img{

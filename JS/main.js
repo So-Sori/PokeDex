@@ -22,7 +22,7 @@ const typeColors = {
     grass: '#4A9681',
     psychic: '#FFC6D9',
     ghost: '#561D25',
-    bug: '#81EA83',
+    bug: '#A2FAA3',
     poison: '#795663',
     ground: '#D2B074',
     dragon: '#DA627D',
@@ -67,7 +67,7 @@ function createPokemon(pokemon) {
         const typeCard = document.createElement("p");
         typeCard.textContent = type.type.name;
         typeCard.style.color =  `${typeColors[type.type.name]}`;
-        typeCard.style.border = `1px dashed ${types[1] ? typeColors[types[1].type.name] : typeColors[type.type.name]}`;
+        typeCard.style.border = `1px dashed ${qqtypeColors[type.type.name]}`;
         typeContainer.appendChild(typeCard);
     })
 
