@@ -2,9 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap');
 
 *{
-    padding:0;
-    margin:0;
-    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 :root{
@@ -175,29 +172,40 @@ swiper-slide:nth-child(10){
     padding: 10px;
     margin: 20px;
     border-radius: 10px;
-    background-color: #dff1fa;
+    background-color: #f0e9f0;
+    box-shadow: 5px 5px 0 #0000009f;
 }
 .poke-name{
     width: 100%;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     font-weight: 500;
     text-transform: capitalize;
 }
 .type-container{
     width: 100%;
+    display: flex;
     text-align: center;
     text-transform: capitalize;
+    margin:10px;
+    /* background-color: #A2FAA3; */
+    /* background-color: #FFEA70; */
+    background-color: #E898AA;
 }
 .type-container p{
-    width: 50%;
-    border: 1px dashed;
+    width: 40%;
     margin: auto;
-    padding: 5px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.img-container{
+    width:100%;
+    border-radius: 10px;
 }
 .img-container img{
-    width:200px;
-    background-color: #d1ecff;
+    width:100%;
+    height: auto;
 }
 .stats-container{
     width: 100%;
@@ -220,11 +228,15 @@ swiper-slide:nth-child(10){
     text-transform: capitalize;
 }
 .search{
-    width:15%;
-    padding: 5px 15px;
+    width:50%;
+    padding: 8px 15px;
     border-radius: 15px;
     outline: none;
     border: 1px solid var(--black-complement);
+}
+.bx-search-alt{
+    font-size: 7vw;
+    color: var(--black-complement);
 }
 
 @media screen and (min-width:800px){
@@ -278,6 +290,9 @@ swiper-slide:nth-child(10){
     }
     .card-container .poke-card{
         width: 25%;
+    }
+    .search{
+        width:35%;
     }
 }
 @keyframes banner-img{
