@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeDex</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container-banner">
+            <h1 class="tittle-banner">Learn more about your <span class="animation">favorite pokemon</span></h1>
+            <div class="container-btn-banner">
+                <button class="btn-poke animation">Let's go</button>
+            </div>
+        </div>
+        <div class="container-banner-pokemon animation" id="banner-pokemon">
+
+        </div>
+    </header>
+
+    <div class="container-popular">
+        <h2>The 10 most <span><br>loved pokemon</span></h2>
+          <swiper-container class="mySwiper" id="mySwiper" space-between="20"
+    slides-per-view="3" navigation="true">
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+            <swiper-slide>
+            </swiper-slide>
+
+          </swiper-container>
+        
+    </div>
+
+   <div class="container-all-pokemons">
+        <input class="search" type="text" name="search" id="search" placeholder="Name PokemonIMG/"> <!--icon here-->
+
+        <div class="card-container" id="card-container">
+
+        </div>
+    </div>
+    <script src="JS/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+</body>
+</html>
