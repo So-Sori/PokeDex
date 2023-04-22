@@ -1,16 +1,5 @@
-function fetchPokemon(id){
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        .then((res)=>res.json())
-        .then((data) => {
-            createPokemon(data)
-        })
-}
-//CREACION DE POKEMONES
-function fetchPokemons(numbers) {
-    for (let i = 1; i <= numbers+1; i++) {
-        fetchPokemon(i);
-    }
-}
+let amountPokemons = 30;
+
 const typeColors = {
     electric: '#E4CE53',
     normal: '#B09398',
@@ -32,14 +21,29 @@ const typeColors = {
     default: '#2A1A1F',
 };
 
+function fetchPokemon(id){
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+        .then((res)=>res.json())
+        .then((data) => {
+            createPokemon(data)
+        })
+}
+//CREACION DE POKEMONES
+function fetchPokemons(numbers) {
+    for (let i = 1; i <= numbers; i++) {
+        fetchPokemon(i);
+    }
+}
+
+let defaultPokemon = [];
 function createPokemon(pokemon) {
     const { types } = pokemon;
     setCardColor(types);
 
     const cardContainer = document.getElementById("card-container");
-
+    
     const card = document.createElement("div");
-    card.classList.add("poke-card")
+    card.classList.add("poke-card");
   
     const spriteContainer = document.createElement("div");
     spriteContainer.classList.add("img-container");
@@ -67,7 +71,7 @@ function createPokemon(pokemon) {
         const typeCard = document.createElement("p");
         typeCard.textContent = type.type.name;
         typeCard.style.color =  `${typeColors[type.type.name]}`;
-        typeCard.style.border = `1px dashed ${qqtypeColors[type.type.name]}`;
+        typeCard.style.border = `1px dashed ${typeColors[type.type.name]}`;
         typeContainer.appendChild(typeCard);
     })
 
@@ -91,8 +95,23 @@ function createPokemon(pokemon) {
     card.appendChild(typeContainer);
     card.appendChild(statsContainer);
   
-  
+    defaultPokemon.push(`${pokemon.name}`);
+    defaultPokemon.push(`${pokemon.id}`);
     cardContainer.appendChild(card);
+}
+function pokeNotFound(err){
+    Swal.fire({
+        icon: 'error',
+        title: 'Pokemon Not Found!',
+        text: 'Make Sure You Write Well'
+      })
+}
+function errSearchBtn(){
+    Swal.fire({
+        icon: 'warning',
+        title: 'Existing Pokemon',
+        text: 'Check The List Of The 30 First Pokemons'
+      })
 }
 // Definicion de colores
 let colorOne;
@@ -101,4 +120,28 @@ function setCardColor(types) {
     colorOne = typeColors[types[0].type.name];
     colorTwo = types[1] ? typeColors[types[1].type.name] : typeColors.default;
 }
-fetchPokemons(50)
+
+// Funcionality search botom
+const searchPokemon = event => {
+    event.preventDefault();
+    let userPokemons = [];
+    const { value } = event.target.search;
+
+    // Verifying that the pokemon doesn't exist
+    if(defaultPokemon.includes(value)){
+        errSearchBtn();
+        userPokemons.push(`${value}`);
+    }
+    if(userPokemons.includes(value)){
+        errSearchBtn();
+    }
+    else{
+        userPokemons.push(`${value}`);
+        fetch(`https://pokeapi.co/api/v2/pokemon/${value.toLowerCase()}`)
+            .then(data => data.json())
+            .then(response => createPokemon(response))
+            .catch(err => pokeNotFound(err))
+    }
+
+}
+fetchPokemons(amountPokemons)

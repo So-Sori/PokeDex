@@ -61,7 +61,10 @@
     </div>
 
    <div class="container-all-pokemons" id="all-pokemons">
-    <i class='bx bx-search-alt'></i><input class="search" type="text" name="search" id="search" placeholder="Name Pokemon">
+    <h2>List of the first <span><br>30 pokemons</span></h2>
+    <form action="" onsubmit="searchPokemon(event)">
+        <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
+    </form>
 
         <div class="card-container" id="card-container">
 
@@ -69,5 +72,7 @@
     </div>
     <script src="JS/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <!-- ALERT LIBRARY -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
