@@ -1,0 +1,360 @@
+/* Monsertar */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap');
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+:root{
+    --color-pokemon1-banner: #ffe554;
+    --color-pokemon2-banner: #ff9e54;
+    --color-pokemon3-banner:#7ac3f8;
+    --color-pokemon4-banner: #b9ff97;
+    --white-complement: #ffff;
+    --black-complement: #000000;
+
+    /* Elements slider */
+    --color-pokemon1-slider:#005187d0;
+    --color-pokemon2-slider:#0283b6be;
+    --color-pokemon3-slider:#EEEACB;
+    --color-pokemon4-slider:#fe9941ad;
+    --color-pokemon5-slider:#393d41b7;
+    --color-pokemon6-slider:#efaaabb7;
+    --color-pokemon7-slider:#576a8faf;
+    --color-pokemon8-slider:#01626daf;
+    --color-pokemon9-slider:#87cc9ca6;
+    --color-pokemon10-slider:#7573adac;
+
+}
+header,.container-banner,.container-popular,.container-all-pokemons,.container-all-pokemons .card-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+header{
+    background-color: black;
+}
+.container-banner{
+    padding: 20px 0;
+}
+.container-banner .tittle-banner{
+    width: 100%;
+    font-size: 7vw;
+    text-transform: capitalize;
+    text-align: center;
+    color: var(--white-complement);
+    padding: 10px;
+}
+.container-banner .tittle-banner span{
+    color: rgb(255, 229, 84);
+    animation-name: text-colors;
+}
+.container-btn-banner{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.container-btn-banner .btn-poke{
+    width: 30%;
+    height: auto;
+    cursor: pointer;
+    margin: 10px auto;
+    padding: 10px 0;
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: var(--color-pokemon1-banner);
+    box-shadow: 2px 3px 2px var(--white-complement);
+    animation-name:banner-colors;
+}
+.container-btn-banner .btn-poke:hover{
+    transition: .5s;
+    box-shadow: -2px 3px 0px var(--white-complement);
+}
+.container-banner-pokemon{
+    width: 100%;
+    height: 50vh;
+
+    background-image:url("../IMG/banner-img1.png");
+    background-size: 65%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: var(--color-pokemon1-banner);
+    padding: 20px;
+    border-radius: 50% 50% 0 0;
+    animation-name: banner-img ,banner-colors;
+}
+.animation{
+    transition: all 1s linear;
+    animation-duration:28s;
+    animation-iteration-count: infinite;
+    animation-timeline: linear;
+}
+.container-popular h2{
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 7vw;
+    text-transform: capitalize;
+}
+.container-popular h2 span{
+    font-weight: lighter;
+}
+swiper-container,swiper-slide{
+    width: 100%;
+    height: auto;
+}
+swiper-slide{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 60%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+}
+swiper-slide:nth-child(1){
+    background-image: url("/IMG/slider-img1.png");
+    background-color: var(--color-pokemon1-slider);
+}
+swiper-slide:nth-child(2){
+    background-image: url("/IMG/slider-img2.png");
+    background-color: var(--color-pokemon2-slider);
+}
+swiper-slide:nth-child(3){
+    background-image: url("/IMG/slider-img3.png");
+    background-color: var(--color-pokemon3-slider);
+}
+swiper-slide:nth-child(4){
+    background-image: url("/IMG/slider-img4.png");
+    background-color: var(--color-pokemon4-slider);
+}
+swiper-slide:nth-child(5){
+    background-image: url("/IMG/slider-img5.png");
+    background-color: var(--color-pokemon5-slider);
+}
+swiper-slide:nth-child(6){
+    background-image: url("/IMG/slider-img6.png");
+    background-color: var(--color-pokemon6-slider);
+}
+swiper-slide:nth-child(7){
+    background-image: url("/IMG/slider-img7.png");
+    background-color: var(--color-pokemon7-slider);
+}
+swiper-slide:nth-child(8){
+    background-image: url("/IMG/slider-img8.png");
+    background-color: var(--color-pokemon8-slider);
+}
+swiper-slide:nth-child(9){
+    background-image: url("/IMG/slider-img9.png");
+    background-color: var(--color-pokemon9-slider);
+}
+swiper-slide:nth-child(10){
+    background-image: url("/IMG/slider-img10.png");
+    background-color: var(--color-pokemon10-slider);
+}
+.container-all-pokemons{
+    margin-top: 100px;
+}
+.card-container .poke-card{
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #dff1fa;
+}
+.poke-name{
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.type-container{
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+}
+.type-container p{
+    width: 50%;
+    border: 1px dashed;
+    margin: auto;
+    padding: 5px;
+}
+.img-container img{
+    width:200px;
+    background-color: #d1ecff;
+}
+.stats-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.stats-container div{
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    color: var(--black-complement);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.search{
+    width:15%;
+    padding: 5px 15px;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid var(--black-complement);
+}
+
+@media screen and (min-width:800px){
+    .container-banner-pokemon{
+        background-size: 40%;
+    }
+    swiper-slide{
+    width: 100%;
+    height: 200px;
+    }
+    .poke-card{
+        width: 30%;
+    }
+    
+}
+@media screen and (min-width:900px){
+    .container-banner-pokemon{
+        background-size: 40%;
+        flex-wrap: wrap;
+    }
+    .container-banner{
+        width: 50%;
+        font-size: 4vw;
+        padding: 20px  0;
+    }
+    .container-banner .tittle-banner{
+        width: 100%;
+        font-size: 3vw;
+    }
+    .container-banner-pokemon{
+        width: 50%;
+        height: 60vh;
+        background-image:url("../IMG/banner-img1.png");
+        background-size: 55%;
+    }
+    .container-btn-banner .btn-poke{
+        width: 20%;
+    }
+    .container-popular h2{
+        font-size: 3.5vw;
+    }
+    swiper-container{
+        width: 70%;
+    }
+    swiper-slide{
+        width: 30%;
+        height: 300px;
+    }
+    .card-container{
+        flex-wrap: nowrap;
+    }
+    .card-container .poke-card{
+        width: 25%;
+    }
+}
+@keyframes banner-img{
+    0%{
+        background-image:url("../IMG/banner-img1.png");
+    }
+    25%{
+        background-image:url("../IMG/banner-img1.png");
+    }
+    26%{
+        background-image:url("../IMG/banner-img2.png");
+    }
+    50%{
+        background-image:url("../IMG/banner-img2.png");
+    }
+    51%{
+        background-image:url("../IMG/banner-img3.png");
+    }
+    75%{
+        background-image:url("../IMG/banner-img3.png");
+    }
+    76%{
+        background-image:url("../IMG/banner-img4.png");
+    }
+    100%{
+        background-image:url("../IMG/banner-img4.png");
+    }
+}
+@keyframes banner-colors{
+    0%{
+        background-color: var(--color-pokemon1-banner)
+    }
+    25%{
+        background-color: var(--color-pokemon1-banner)
+    }
+    26%{
+        background-color: var(--color-pokemon2-banner);
+    }
+    50%{
+        background-color: var(--color-pokemon2-banner);
+    }
+    51%{
+        background-color: var(--color-pokemon3-banner);
+    }
+    75%{
+        background-color: var(--color-pokemon3-banner);
+    }
+    76%{
+        background-color: var(--color-pokemon4-banner);
+    }
+    100%{
+        background-color: var(--color-pokemon4-banner);
+    }
+}
+@keyframes text-colors{
+    0%{
+        color: var(--color-pokemon1-banner)
+    }
+    25%{
+        color: var(--color-pokemon1-banner)
+    }
+    26%{
+        color: var(--color-pokemon2-banner);
+    }
+    50%{
+        color: var(--color-pokemon2-banner);
+    }
+    51%{
+        color: var(--color-pokemon3-banner);
+    }
+    75%{
+        color: var(--color-pokemon3-banner);
+    }
+    76%{
+        color: var(--color-pokemon4-banner);
+    }
+    100%{
+        color: var(--color-pokemon4-banner);
+    }
+}
