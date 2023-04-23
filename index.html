@@ -14,7 +14,7 @@
         <div class="container-banner">
             <h1 class="tittle-banner">Learn more about your <span class="animation">favorite pokemon</span></h1>
             <div class="container-btn-banner">
-                <button class="btn-poke animation"><a href="#all-pokemons">Let's go</a></button>
+                <button class="btn-poke animation"><a href="#navegation">Let's go</a></button>
             </div>
         </div>
         <div class="container-banner-pokemon animation" id="banner-pokemon">
@@ -24,52 +24,49 @@
 
     <div class="container-popular">
         <h2>The 10 most <span><br>loved pokemon</span></h2>
+
           <swiper-container class="mySwiper" id="mySwiper" space-between="20"
     slides-per-view="3" navigation="true">
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
-            <swiper-slide>
-            </swiper-slide>
-
           </swiper-container>
         
     </div>
 
-   <div class="container-all-pokemons" id="all-pokemons">
-    <h2>List of the first <span><br>30 pokemons</span></h2>
-    <form action="" onsubmit="searchPokemon(event)">
-        <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
-    </form>
+    <div class="container-navegation" id="navegation">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><button class="btn btn-pokemon" id="ver-todos">Ver todos</button></li> 
+                <li class="nav-item"><button class="btn btn-pokemon normal" id="normal">Normal</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon fire" id="fire">Fire</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon water" id="water">Water</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon grass" id="grass">Grass</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon electric" id="electric">Electric</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon ice" id="ice">Ice</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon fighting" id="fighting">Fighting</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon poison" id="poison">Poison</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon ground" id="ground">Ground</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon flying" id="flying">Flying</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon psychic" id="psychic">Psychic</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon bug" id="bug">Bug</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon rock" id="rock">Rock</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon ghost" id="ghost">Ghost</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon dark" id="dark">Dark</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon dragon" id="dragon">Dragon</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon steel" id="steel">Steel</button></li>
+                <li class="nav-item"><button class="btn btn-pokemon fairy" id="fairy">Fairy</button></li>
+            </ul>
+        </nav>
+        <form action="" onsubmit="searchPokemon(event)">
+            <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
+        </form>
+    </div>
 
+   <div class="container-all-pokemons" id="all-pokemons">
         <div class="card-container" id="card-container">
 
         </div>
     </div>
+
+
     <script src="JS/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <!-- ALERT LIBRARY -->
