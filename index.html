@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokeDex</title>
+    <link rel="stylesheet" href="CSS/normalize.css">
     <link rel="stylesheet" href="CSS/styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <header>
         <div class="container-banner">
             <h1 class="tittle-banner">Learn more about your <span class="animation">favorite pokemon</span></h1>
             <div class="container-btn-banner">
-                <button class="btn-poke animation">Let's go</button>
+                <button class="btn-poke animation"><a href="#all-pokemons">Let's go</a></button>
             </div>
         </div>
         <div class="container-banner-pokemon animation" id="banner-pokemon">
@@ -58,8 +60,11 @@
         
     </div>
 
-   <div class="container-all-pokemons">
-        <input class="search" type="text" name="search" id="search" placeholder="Name PokemonIMG/"> <!--icon here-->
+   <div class="container-all-pokemons" id="all-pokemons">
+    <h2>List of the first <span><br>30 pokemons</span></h2>
+    <form action="" onsubmit="searchPokemon(event)">
+        <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
+    </form>
 
         <div class="card-container" id="card-container">
 
@@ -67,5 +72,7 @@
     </div>
     <script src="JS/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <!-- ALERT LIBRARY -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
