@@ -1,25 +1,24 @@
 let amountPokemons = 30;
-
 const typeColors = {
-    electric: '#E4CE53',
-    normal: '#B09398',
-    fire: '#FF675C',
-    water: '#0596C7',
-    ice: '#AFEAFD',
-    rock: '#999799',
-    flying: '#7AE7C7',
-    grass: '#4A9681',
-    psychic: '#FFC6D9',
-    ghost: '#561D25',
-    bug: '#A2FAA3',
-    poison: '#795663',
-    ground: '#D2B074',
-    dragon: '#DA627D',
-    steel: '#1D8A99',
-    fighting: '#2F2F2F',
-    fairy: '#E898AA',
-    dark: '#240000',
-    default: '#2A1A1F',
+    normal:  "#A8A878",
+    fire:  "#F08030",
+    water:  "#6890F0",
+    grass:  "#78C850",
+    electric:  "#F8D030",
+    ice:  "#98D8D8",
+    fighting:  "#C03028",
+    poison:  "#A040A0",
+    ground:  "#E0C068",
+    flying:  "#A890F0",
+    psychic:  "#F85888",
+    bug:  "#A8B820",
+    rock:  "#B8A038",
+    ghost:  "#705898",
+    dark:  "#705848",
+    dragon:  "#7038F8",
+    steel:  "#B8B8D0",
+    fairy:  "#F0B6BC",
+    default: '#2A1A1F'
 };
 
 function fetchPokemon(id){
@@ -71,8 +70,7 @@ function createPokemon(pokemon) {
     types.forEach(type => {
         const typeCard = document.createElement("p");
         typeCard.textContent = type.type.name;
-        typeCard.style.color =  `${typeColors[type.type.name]}`;
-        typeCard.style.border = `1px dashed ${typeColors[type.type.name]}`;
+        typeCard.style.background =  `${typeColors[type.type.name]}`;
         typeContainer.appendChild(typeCard);
     })
 
