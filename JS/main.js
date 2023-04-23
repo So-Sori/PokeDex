@@ -21,7 +21,7 @@ const typeColors = {
 };
 let URL = "https://pokeapi.co/api/v2/pokemon/";
 
-// Slider dinamico
+// SLIDER DINAMICO
 let sliderPokemons = [658,448,778,6,197,700,445,384,282,94]
 for (let i = 0; i <= sliderPokemons.length; i++) {
     fetch(URL + sliderPokemons[i])
@@ -32,7 +32,6 @@ let containerSlider = document.getElementById("mySwiper");
 
 function slider(pokemon) {
     const sliders = document.createElement("swiper-slide");
-    console.log(sliders);
     const { types } = pokemon;
     const colorOne = typeColors[types[0].type.name];
     const colorTwo = types[1] ? typeColors[types[1].type.name] : typeColors.default;
@@ -40,12 +39,11 @@ function slider(pokemon) {
     sliders.innerHTML = `
             <img src="${pokemon.sprites.front_default}" style="background: radial-gradient(${colorTwo} 33%, ${colorOne} 33%) 0% 0% / 5px 5px" alt="pokemon ${pokemon.name}">
     `;
-    console.log(sliders);
 
     containerSlider.append(sliders)
 }
-// Creacion de cards
-for (let i = 1; i <= 251; i++) {
+// CREACION DE LAS CARDS
+for (let i = 1; i <= 151; i++) {
     fetch(URL + i)
         .then((response) => response.json())
         .then(data => mostrarPokemon(data))
@@ -108,7 +106,7 @@ botonesList.forEach(boton => boton.addEventListener("click", (event) => {
     }
 }))
 
-// Boton buscar
+// BOTON BUSCAR
 function pokeNotFound(err){
     valueNotFound = false;
     Swal.fire({

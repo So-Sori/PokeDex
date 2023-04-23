@@ -119,6 +119,7 @@ header{
     border-radius: 50% 50% 0 0;
     animation-name: banner-img ,banner-colors;
 }
+/* DISEÑO ESTADAR ANIMACION BANNER */
 .animation{
     transition: all 1s linear;
     animation-duration:28s;
@@ -422,6 +423,7 @@ form{
         width:35%;
     }
 }
+/* ANIMACION BANNER IMG */
 @keyframes banner-img{
     0%{
         background-image:url("../IMG/banner-img1.png");
