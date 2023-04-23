@@ -18,6 +18,7 @@ const typeColors = {
     steel: '#1D8A99',
     fighting: '#2F2F2F',
     fairy: '#E898AA',
+    dark: '#240000',
     default: '#2A1A1F',
 };
 
@@ -99,7 +100,9 @@ function createPokemon(pokemon) {
     defaultPokemon.push(`${pokemon.id}`);
     cardContainer.appendChild(card);
 }
+let valueNotFound = true;
 function pokeNotFound(err){
+    valueNotFound = false;
     Swal.fire({
         icon: 'error',
         title: 'Pokemon Not Found!',
@@ -137,10 +140,24 @@ const searchPokemon = event => {
     }
     else{
         userPokemons.push(`${value}`);
+        valueNotFound = true
         fetch(`https://pokeapi.co/api/v2/pokemon/${value.toLowerCase()}`)
             .then(data => data.json())
             .then(response => createPokemon(response))
             .catch(err => pokeNotFound(err))
+            if(valueNotFound){
+                console.log(valueNotFound);
+                Swal.fire({
+                    position: 'botom-end',
+                    icon: 'success',
+                    title: 'Pokemon Added Below',
+                    showConfirmButton: false,
+                    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1200px-Pok%C3%A9_Ball_icon.svg.png',
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    timer: 3500
+                  })
+            }
     }
 
 }
