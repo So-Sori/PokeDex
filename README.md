@@ -7,6 +7,7 @@ This project has been created in order to put into practice various knowledge, m
     * HTML
     * CSS
     * JavaScript
+    * [Pokemon API](https://pokeapi.co)
 # Result
 !["Poke Card  Pikachu"](https://github.com/So-Sori/PokeDex/blob/main/IMG/cardpikachu.png?raw=true)
 # Getting Started
