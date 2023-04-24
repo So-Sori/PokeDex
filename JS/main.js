@@ -111,7 +111,7 @@ function pokeNotFound(err){
     valueNotFound = false;
     Swal.fire({
         icon: 'error',
-        title: 'Pokemon Not Found!',
+        title: `Pokemon Not Found!`,
         text: 'Make Sure You Write Well'
       })
 }
@@ -120,10 +120,73 @@ const searchPokemon = event => {
     listaPokemon.innerHTML = "";
     const { value } = event.target.search;
 
-    fetch(URL + `${value.toLowerCase()}`)
-        .then((response) => response.json())
-        .then(data => {
+    let pokemonsSearch = value.split(",");
+    let pokemonsId = [];
+    let pokemonsName = [];
+
+    if (pokemonsSearch.length > 1) {
+        // FOR PARA MOSTRAR VALORES
+        for (let i = 0; i < pokemonsSearch.length; i++) {
+            fetch(URL + `${pokemonsSearch[i].toLowerCase()}`)
+            .then((response) => response.json())
+            .then(data => {
+                
                 mostrarPokemon(data);
-        })
-        .catch(err => pokeNotFound(err))
+            });
+        }
+    }else{
+        fetch(URL + `${value.toLowerCase()}`)
+            .then((response) => response.json())
+            .then(data => {
+                    mostrarPokemon(data);
+            })
+            .catch(err => pokeNotFound(err))
+    }
 }
+
+
+// const searchPokemon = event => {
+//     event.preventDefault();
+//     listaPokemon.innerHTML = "";
+//     const { value } = event.target.search;
+
+//     let pokemonsSearch = value.split(",");
+//     let pokemonsAddUser = [];
+
+//     if (pokemonsSearch.length > 1) {
+//         for (let i = 0; i < pokemonsSearch.length; i++) {
+//             fetch(URL + `${pokemonsSearch[i].toLowerCase()}`)
+//             .then((response) => response.json())
+//             .then(data => {
+//                 pokemonsAddUser.push(data.name);
+//                 pokemonsAddUser.push(data.id);
+//                 // console.log(pokemonsAddUser,"antes de entrar");
+                
+//                 if(value.includes(pokemonsAddUser[i])){
+//                     Swal.fire({
+//                         icon: 'warning',
+//                         title: 'Duplicate Value',
+//                         footer: 'Delete One'
+//                     })
+//                     pokemonsAddUser = pokemonsAddUser.splice(pokemonsAddUser[i], 1)
+//                     console.log(pokemonsAddUser);
+//                 }
+//                 else{
+//                     mostrarPokemon(data);
+//                     // console.log(pokemonsAddUser,"dentro del else");
+//                     pokemonsAddUser = [];
+//                 }
+//             })
+//             .catch(err => pokeNotFound(err))
+            
+//         }
+//     }
+//     else{
+//         fetch(URL + `${value.toLowerCase()}`)
+//         .then((response) => response.json())
+//         .then(data => {
+//                 mostrarPokemon(data);
+//         })
+//         .catch(err => pokeNotFound(err))
+//     }
+// }
