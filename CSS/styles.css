@@ -359,7 +359,6 @@ form{
     margin: auto;
     border: 1px solid var(--black-complement);
 }
-
 @media screen and (min-width:700px){
     .container-banner-pokemon{
         background-size: 40%;
