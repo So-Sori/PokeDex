@@ -4,10 +4,10 @@ If the answer to one of these questions is **yes**, you would surely like to kno
 # Objective
 This project has been created in order to put into practice various knowledge, mainly consumption of APIs __(PokeApi)__.
 # Skills
-    * HTML
-    * CSS
-    * JavaScript
-    * [Pokemon API](https://pokeapi.co)
+   * HTML
+   * CSS
+   * JavaScript
+   * [Pokemon API](https://pokeapi.co)
 # Result
 !["Poke Card  Pikachu"](https://github.com/So-Sori/PokeDex/blob/main/IMG/cardpikachu.png?raw=true)
 # Getting Started
