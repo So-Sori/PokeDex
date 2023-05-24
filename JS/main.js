@@ -20,37 +20,51 @@ const typeColors = {
     default: '#2A1A1F'
 };
 let URL = "https://pokeapi.co/api/v2/pokemon/";
-
-// SLIDER DINAMICO
-let sliderPokemons = [658,448,778,6,197,700,445,384,282,94]
-for (let i = 0; i <= sliderPokemons.length; i++) {
-    fetch(URL + sliderPokemons[i])
-        .then((response) => response.json())
-        .then(data => slider(data))
-}
-let containerSlider = document.getElementById("mySwiper");
-
-function slider(pokemon) {
-    const sliders = document.createElement("swiper-slide");
-    const { types } = pokemon;
-    const colorOne = typeColors[types[0].type.name];
-    const colorTwo = types[1] ? typeColors[types[1].type.name] : typeColors.default;
-
-    sliders.innerHTML = `
-            <img src="${pokemon.sprites.front_default}" style="background: radial-gradient(${colorTwo} 33%, ${colorOne} 33%) 0% 0% / 5px 5px" alt="pokemon ${pokemon.name}">
-    `;
-
-    containerSlider.append(sliders)
-}
+let next = document.getElementById("btn-next");
+let previous = document.getElementById("btn-previous");
+let containerBtn = document.querySelector(".container-btn");
+//PAGINACION
+let offset = 1;
+let limit = 11;
+next.addEventListener("click",()=>{
+      if (offset !== 1281) {
+        offset += 12;
+        removeChildNodes(listaPokemon);
+        fetchPokemons(offset,limit);
+        window.scrollTo({
+            top: listaPokemon.getBoundingClientRect().top,
+            behavior: 'smooth'
+          });
+      }
+});
+previous.addEventListener("click",()=>{
+    if (offset !== 1) {
+        offset -= 12;
+        removeChildNodes(listaPokemon);
+        fetchPokemons(offset,limit);
+        window.scroll({
+            top: listaPokemon.getBoundingClientRect().top,
+            behavior: 'smooth'
+          });
+    }
+});
 // CREACION DE LAS CARDS
-for (let i = 1; i <= 151; i++) {
+function fetchPokemon(i) {
     fetch(URL + i)
         .then((response) => response.json())
-        .then(data => mostrarPokemon(data))
+        .then(data => {
+            showPokemon(data)
+        })
 }
-const listaPokemon = document.querySelector("#all-pokemons");
+function fetchPokemons(offset,limit) {
+    for (let i = offset; i <= offset + limit; i++) {
+        fetchPokemon(i);
+    }  
+}
+const listaPokemon = document.getElementById("all-pokemons");
 const botonesList = document.querySelectorAll(".btn-pokemon");
-function mostrarPokemon(pokemon) {
+
+function showPokemon(pokemon) {
 
     let tipos = pokemon.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
     tipos = tipos.join('');
@@ -88,18 +102,19 @@ botonesList.forEach(boton => boton.addEventListener("click", (event) => {
     const botonId = event.currentTarget.id;
 
     listaPokemon.innerHTML = "";
+    if(botonId === "ver-todos") {
+        fetchPokemons(offset,limit);
+        containerBtn.style.display = "block";
+    }
 
-    for (let i = 1; i <= 151; i++) {
+    for (let i = 1; i <= 1281; i++) {
         fetch(URL + i)
             .then((response) => response.json())
             .then(data => {
-                if(botonId === "ver-todos") {
-                    mostrarPokemon(data);
-                } else {
                     const tipos = data.types.map(type => type.type.name);
                     if (tipos.some(tipo => tipo.includes(botonId))) {
-                        mostrarPokemon(data);
-                    }
+                        showPokemon(data);
+                        containerBtn.style.display = "none";
                 }
 
             })
@@ -119,10 +134,23 @@ const searchPokemon = event => {
     event.preventDefault();
     listaPokemon.innerHTML = "";
     const { value } = event.target.search;
-        fetch(URL + `${value.toLowerCase()}`)
-            .then((response) => response.json())
-            .then(data => {
-                    mostrarPokemon(data);
+
+    if (value === "") {
+        fetchPokemons(offset,limit);
+        return;
+    }
+    fetch(URL + `${value.toLowerCase()}`)
+    .then((response) => response.json())
+    .then(data => {
+        showPokemon(data);
+        containerBtn.style.display = "none";
             })
             .catch(err => pokeNotFound(err))
 }
+function removeChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+}
+
+fetchPokemons(offset,limit);

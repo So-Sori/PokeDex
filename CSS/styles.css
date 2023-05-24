@@ -11,18 +11,7 @@
     --color-pokemon4-banner: #b9ff97;
     --white-complement: #ffff;
     --black-complement: #000000;
-
-    /* Elements slider */
-    --color-pokemon1-slider:#005187d0;
     --color-pokemon2-slider:#0283b6be;
-    --color-pokemon3-slider:#EEEACB;
-    --color-pokemon4-slider:#fe9941ad;
-    --color-pokemon5-slider:#393d41b7;
-    --color-pokemon6-slider:#efaaabb7;
-    --color-pokemon7-slider:#576a8faf;
-    --color-pokemon8-slider:#01626daf;
-    --color-pokemon9-slider:#87cc9ca6;
-    --color-pokemon10-slider:#7573adac;
 
     /* Colors type */
     --type-normal: #A8A878;
@@ -137,22 +126,6 @@ header{
 .container-popular h2 span{
     font-weight: lighter;
 }
-swiper-container{
-    width: 100%;
-    height: auto;
-}
-swiper-slide{
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-swiper-slide img{
-    width: 100%;
-    border-radius: 50%;
-}
 .nav {
     display: flex;
     flex-direction: column;
@@ -170,9 +143,14 @@ swiper-slide img{
     gap: .5rem;
     list-style: none;
 }
-
-.btn-pokemon {
-    padding: .5rem;
+.container-btn{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.btn-pokemon,.btn-pagination{
+    padding:10px;
     border-radius: 100vmax;
     cursor: pointer;
     text-transform: uppercase;
@@ -180,6 +158,12 @@ swiper-slide img{
     transition: .2s;
     outline: none;
     border: none;
+}
+.btn-pagination{
+    background-color: var(--color-pokemon2-slider);
+    color: var(--white-complement);
+    border-radius: 5px;
+    margin: 20px;
 }
 .normal {
     background-color: var(--type-normal);
@@ -270,7 +254,7 @@ swiper-slide img{
     background-color: var(--type-fairy);
     color: var(--black-complement);
 }
-.btn-pokemon:hover {
+.btn-pokemon:hover,.btn-pagination:hover {
     transform: scale(1.1);
     box-shadow: 2px 3px 0px #00000078;
 }
@@ -278,7 +262,7 @@ swiper-slide img{
     margin-top: 100px;
 }
 .poke-card{
-    width: 70%;
+    width: 50%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -323,6 +307,7 @@ swiper-slide img{
 .img-container img{
     width:90%;
     height: auto;
+    margin: auto;
     border-radius: 50%;
 }
 .stats-container{
@@ -349,7 +334,7 @@ form{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 25px 0 0 0;
+    margin: 0 0 10px 0;
 }
 .search{
     width:50%;
@@ -401,17 +386,14 @@ form{
     .container-popular h2{
         font-size: 3.5vw;
     }
-    swiper-container{
-        width: 70%;
-    }
-    swiper-slide{
-        width: 30%;
-    }
     .card-container{
         flex-wrap: nowrap;
     }
     .poke-card{
-        width: 25%;
+        width: 20%;
+    }
+    .poke-card img{
+        width: 70%;
     }
     .search{
         width:35%;

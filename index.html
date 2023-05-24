@@ -23,17 +23,10 @@
 
         </div>
     </header>
-
-    <div class="container-popular">
-        <h2>The 10 most <span><br>loved pokemon</span></h2>
-
-          <swiper-container class="mySwiper" id="mySwiper" space-between="20"
-    slides-per-view="3" navigation="true">
-          </swiper-container>
-        
-    </div>
-
     <div class="container-navegation" id="navegation">
+        <form action="" onsubmit="searchPokemon(event)">
+            <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
+        </form>
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-item"><button class="btn btn-pokemon" id="ver-todos">Ver todos</button></li> 
@@ -57,15 +50,15 @@
                 <li class="nav-item"><button class="btn btn-pokemon fairy" id="fairy">Fairy</button></li>
             </ul>
         </nav>
-        <form action="" onsubmit="searchPokemon(event)">
-            <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
-        </form>
     </div>
 
    <div class="container-all-pokemons" id="all-pokemons">
         <div class="card-container" id="card-container">
-
         </div>
+    </div>
+    <div class="container-btn">
+        <button id ="btn-previous" class ="btn-pagination">Previous</button>
+        <button id ="btn-next" class ="btn-pagination">Next</button>
     </div>
 <script src="JS/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
