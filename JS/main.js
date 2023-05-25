@@ -23,29 +23,43 @@ let URL = "https://pokeapi.co/api/v2/pokemon/";
 let next = document.getElementById("btn-next");
 let previous = document.getElementById("btn-previous");
 let containerBtn = document.querySelector(".container-btn");
+let upBtn = document.querySelector(".bxs-chevron-up-circle");
+
+let scrollY = window.scrollY;
+window.addEventListener("scroll",()=>{
+    scrollY = window.scrollY;
+    if (scrollY >= 2216) {
+        upBtn.style.visibility = "visible";
+    }else{
+        upBtn.style.visibility = "hidden";
+    }
+})
+upBtn.addEventListener("click",()=>{
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+})
 //PAGINACION
 let offset = 1;
 let limit = 11;
 next.addEventListener("click",()=>{
       if (offset !== 1281) {
         offset += 12;
+        const link = document.getElementById(next.getAttribute("data-link"));
+        link.scrollIntoView({behavior:"smooth"});
         removeChildNodes(listaPokemon);
         fetchPokemons(offset,limit);
-        window.scrollTo({
-            top: listaPokemon.getBoundingClientRect().top,
-            behavior: 'smooth'
-          });
       }
 });
 previous.addEventListener("click",()=>{
     if (offset !== 1) {
         offset -= 12;
+        const link = document.getElementById(next.getAttribute("data-link"));
+        link.scrollIntoView({behavior:"smooth"});
         removeChildNodes(listaPokemon);
         fetchPokemons(offset,limit);
-        window.scroll({
-            top: listaPokemon.getBoundingClientRect().top,
-            behavior: 'smooth'
-          });
     }
 });
 // CREACION DE LAS CARDS

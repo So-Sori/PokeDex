@@ -344,6 +344,15 @@ form{
     margin: auto;
     border: 1px solid var(--black-complement);
 }
+.bxs-chevron-up-circle{
+    visibility: hidden;
+    font-size: 4em;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    cursor: pointer;
+    color: #d6bb43;
+}
 @media screen and (min-width:700px){
     .container-banner-pokemon{
         background-size: 40%;
