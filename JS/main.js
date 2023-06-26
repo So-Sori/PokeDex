@@ -109,30 +109,50 @@ function showPokemon(pokemon) {
     </div>
     `;
 
-    listaPokemon.append(div);
+   listaPokemon.append(div);
 }
 
 botonesList.forEach(boton => boton.addEventListener("click", (event) => {
     const botonId = event.currentTarget.id;
+    let loadIcon = document.getElementById("load-icon");
+    let loader = document.getElementById("loader");
 
-    listaPokemon.innerHTML = "";
     if(botonId === "ver-todos") {
+        listaPokemon.innerHTML = "";
         fetchPokemons(offset,limit);
         containerBtn.style.display = "block";
+        loadIcon.style.display = "none";
     }
 
-    for (let i = 1; i <= 1281; i++) {
-        fetch(URL + i)
-            .then((response) => response.json())
-            .then(data => {
-                    const tipos = data.types.map(type => type.type.name);
-                    if (tipos.some(tipo => tipo.includes(botonId))) {
-                        showPokemon(data);
-                        containerBtn.style.display = "none";
-                }
+    async function loaderType() {
+        loader.style.display = "block";
+        containerBtn.style.display = "none";
+        listaPokemon.innerHTML = "";
+        loader.innerHTML = `    
+        <div class="blocked-overlay">
+            <div class="container-gif-overlay">
+                <div>
+                    <img src="/IMG/bailesito pokemon-load.gif" alt="">
+                </div>
+            </div>
+            `;
+    let res = await fetch(URL + "?limit=1281&offset=0");
+    let data = await res.json();
 
-            })
+    for (let i = 0; i <= data.results.length - 1; i++) {
+        let res = await fetch(data.results[i].url);
+        let json = await res.json();
+
+        const tipos = json.types.map(type => type.type.name);
+        if (tipos.some(tipo => tipo.includes(botonId))) {
+            showPokemon(json);
+        }
     }
+    
+    loader.style.display = "none"
+}
+    loaderType();
+
 }))
 
 // BOTON BUSCAR
@@ -160,7 +180,7 @@ const searchPokemon = event => {
         showPokemon(data);
         containerBtn.style.display = "none";
             })
-            .catch(err => pokeNotFound(err))
+    .catch(err => pokeNotFound(err))
 }
 function removeChildNodes(parent) {
     while (parent.firstChild) {
@@ -169,3 +189,4 @@ function removeChildNodes(parent) {
 }
 
 fetchPokemons(offset,limit);
+
