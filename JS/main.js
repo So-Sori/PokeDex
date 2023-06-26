@@ -148,7 +148,7 @@ const searchPokemon = event => {
     event.preventDefault();
     listaPokemon.innerHTML = "";
     const { value } = event.target.search;
-
+    
     if (value === "") {
         fetchPokemons(offset,limit);
         return;
@@ -156,6 +156,7 @@ const searchPokemon = event => {
     fetch(URL + `${value.toLowerCase()}`)
     .then((response) => response.json())
     .then(data => {
+        listaPokemon.innerHTML = "";
         showPokemon(data);
         containerBtn.style.display = "none";
             })

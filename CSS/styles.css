@@ -49,6 +49,8 @@ body{
     background-color: #f0e9f0;
 }
 header{
+    position: relative;
+    z-index: 1000;
     background-color: black;
 }
 .container-banner{
@@ -66,10 +68,13 @@ header{
     color: rgb(255, 229, 84);
     animation-name: text-colors;
 }
-.container-btn-banner{
+.container-btn-banner,.container-loader{
     width: 100%;
     height: auto;
     display: flex;
+}
+.container-loader img{
+    margin: auto;
 }
 .container-btn-banner .btn-poke{
     width: 30%;
@@ -262,7 +267,7 @@ header{
     margin-top: 100px;
 }
 .poke-card{
-    width: 50%;
+    width: 65%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -353,6 +358,45 @@ form{
     cursor: pointer;
     color: #d6bb43;
 }
+/* LOADER */
+.container-overlay{
+    display: none;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+}
+.blocked-overlay{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(133, 161, 177, 0.482);
+    z-index: 500;
+}
+.container-gif-overlay{
+    width: 100%;
+    height: auto;
+    margin: 0px auto;
+    right: 0;
+    left: 0;
+    position: fixed;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-gif-overlay div{
+    width: 100%;
+    margin: 50% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-gif-overlay div img{
+    width: 80%;
+}
+
 @media screen and (min-width:700px){
     .container-banner-pokemon{
         background-size: 40%;
@@ -406,6 +450,9 @@ form{
     }
     .search{
         width:35%;
+    }
+    .container-gif-overlay div img{
+        width: 30%;
     }
 }
 /* ANIMACION BANNER IMG */

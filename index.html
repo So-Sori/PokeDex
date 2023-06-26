@@ -23,9 +23,10 @@
 
         </div>
     </header>
+    <main>
     <div class="container-navegation" id="navegation">
-        <form action="" onsubmit="searchPokemon(event)">
-            <input class="search" type="text" name="search" placeholder="'pikachu' or 25" autocomplete="off">
+        <form action="" onsubmit="searchPokemon(event)" id="search-pokemon">
+            <input class="search" type="text" name="search" placeholder="'type pikachu' or 25" autocomplete="off">
         </form>
         <nav class="nav">
             <ul class="nav-list">
@@ -52,6 +53,10 @@
         </nav>
     </div>
 
+    <div class="container-overlay" id="loader">
+        
+    </div>
+
    <div class="container-all-pokemons" id="all-pokemons">
         <div class="card-container" id="card-container">
         </div>
@@ -62,7 +67,9 @@
     </div>
     <!-- BTN PARA SUBIR -->
     <i class='bx bxs-chevron-up-circle'></i>
-<script src="JS/main.js"></script>
+
+</main>
+<script src="JS/main copy.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 <!-- ALERT LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
