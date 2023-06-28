@@ -45,7 +45,7 @@ upBtn.addEventListener("click",()=>{
 let offset = 1;
 let limit = 11;
 next.addEventListener("click",()=>{
-      if (offset !== 1281) {
+      if (offset !== 898) {
         offset += 12;
         const link = document.getElementById(next.getAttribute("data-link"));
         link.scrollIntoView({behavior:"smooth"});
@@ -67,7 +67,7 @@ function fetchPokemon(i) {
     fetch(URL + i)
         .then((response) => response.json())
         .then(data => {
-            showPokemon(data)
+            listaPokemon.innerHTML += showPokemon(data)
         })
 }
 function fetchPokemons(offset,limit) {
@@ -92,47 +92,71 @@ function showPokemon(pokemon) {
 
 
     const div = document.createElement("div");
-    div.classList.add("poke-card");
+    // div.classList.add("poke-card");
     div.innerHTML = `
-    <div class="img-container">
-    <img src="${pokemon.sprites.front_default}" style="background: radial-gradient(${colorTwo} 33%, ${colorOne} 33%) 0% 0% / 5px 5px" alt="pokemon ${pokemon.name}">
-    </div>
+    <div class="poke-card">
+        <div class="img-container">
+        <img src="${pokemon.sprites.front_default}" style="background: radial-gradient(${colorTwo} 33%, ${colorOne} 33%) 0% 0% / 5px 5px" alt="pokemon ${pokemon.name}">
+        </div>
 
-    <p class="poke-name">N° ${pokemon.id} ${pokemon.name}</p>
+        <p class="poke-name">N° ${pokemon.id} ${pokemon.name}</p>
 
-    <div class="type-container">
-        ${tipos}
-    </div>
+        <div class="type-container">
+            ${tipos}
+        </div>
 
-    <div class="stats-container">
-        ${stats}
+        <div class="stats-container">
+            ${stats}
+        </div>
     </div>
     `;
-
-    listaPokemon.append(div);
+    
+    return div.innerHTML;
 }
 
 botonesList.forEach(boton => boton.addEventListener("click", (event) => {
     const botonId = event.currentTarget.id;
+    let loadIcon = document.getElementById("load-icon");
+    let loader = document.getElementById("loader");
 
-    listaPokemon.innerHTML = "";
     if(botonId === "ver-todos") {
+        listaPokemon.innerHTML = "";
         fetchPokemons(offset,limit);
         containerBtn.style.display = "block";
+        loadIcon.style.display = "none";
     }
 
-    for (let i = 1; i <= 1281; i++) {
-        fetch(URL + i)
-            .then((response) => response.json())
-            .then(data => {
-                    const tipos = data.types.map(type => type.type.name);
-                    if (tipos.some(tipo => tipo.includes(botonId))) {
-                        showPokemon(data);
-                        containerBtn.style.display = "none";
-                }
+    async function loaderType() {
+        loader.style.display = "block";
+        containerBtn.style.display = "none";
+        listaPokemon.innerHTML = "";
+        loader.innerHTML = `    
+        <div class="blocked-overlay">
+            <div class="container-gif-overlay">
+                <div>
+                    <img src="/IMG/cats-cute.gif" alt="">
+                    </div>
+                    </div>
+                    `;
+                    // <img src="/IMG/loading-upload.gif" alt="">
+    let res = await fetch(URL + "?limit=898&offset=0");
+    let data = await res.json();
+    let template = document.createElement("div");
 
-            })
+    for (let i = 0; i <= data.results.length - 1; i++) {
+        let res = await fetch(data.results[i].url);
+        let json = await res.json();
+
+        const tipos = json.types.map(type => type.type.name);
+        if (tipos.some(tipo => tipo.includes(botonId))) {
+            template.innerHTML += showPokemon(json);
+        }
     }
+    listaPokemon.innerHTML =  template.innerHTML;
+    loader.style.display = "none"
+}
+    loaderType();
+
 }))
 
 // BOTON BUSCAR
@@ -157,10 +181,10 @@ const searchPokemon = event => {
     .then((response) => response.json())
     .then(data => {
         listaPokemon.innerHTML = "";
-        showPokemon(data);
+        listaPokemon.innerHTML = showPokemon(data);
         containerBtn.style.display = "none";
             })
-            .catch(err => pokeNotFound(err))
+    .catch(err => pokeNotFound(err))
 }
 function removeChildNodes(parent) {
     while (parent.firstChild) {
