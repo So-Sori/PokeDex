@@ -92,7 +92,7 @@ function showPokemon(pokemon) {
 
 
     const div = document.createElement("div");
-    // div.classList.add("poke-card");
+
     div.innerHTML = `
     <div class="poke-card">
         <div class="img-container">
@@ -110,7 +110,7 @@ function showPokemon(pokemon) {
         </div>
     </div>
     `;
-    
+
     return div.innerHTML;
 }
 
@@ -135,10 +135,9 @@ botonesList.forEach(boton => boton.addEventListener("click", (event) => {
             <div class="container-gif-overlay">
                 <div>
                     <img src="/IMG/cats-cute.gif" alt="">
-                    </div>
-                    </div>
+                </div>
+            </div>
                     `;
-                    // <img src="/IMG/loading-upload.gif" alt="">
     let res = await fetch(URL + "?limit=898&offset=0");
     let data = await res.json();
     let template = document.createElement("div");
@@ -152,6 +151,7 @@ botonesList.forEach(boton => boton.addEventListener("click", (event) => {
             template.innerHTML += showPokemon(json);
         }
     }
+    
     listaPokemon.innerHTML =  template.innerHTML;
     loader.style.display = "none"
 }
@@ -193,3 +193,4 @@ function removeChildNodes(parent) {
 }
 
 fetchPokemons(offset,limit);
+
