@@ -376,7 +376,7 @@ form{
 }
 .container-gif-overlay{
     width: 100%;
-    height: auto;
+    height: 100%;
     margin: 0px auto;
     right: 0;
     left: 0;
@@ -384,17 +384,17 @@ form{
     z-index: 500;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 .container-gif-overlay div{
     width: 100%;
-    margin: 50% 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 .container-gif-overlay div img{
-    width: 80%;
+    width: 40%;
 }
 
 @media screen and (min-width:700px){
@@ -407,7 +407,9 @@ form{
     .poke-card{
         width: 30%;
     }
-    
+    .container-gif-overlay div img{
+        width: 20%;
+    }
 }
 @media screen and (min-width:900px){
     header{
@@ -451,8 +453,19 @@ form{
     .search{
         width:35%;
     }
+}
+@media screen and (min-width:1500px){
+    .container-banner-pokemon{
+        background-size: 40%;
+    }
+    .container-btn-banner .btn-poke{
+        width: 20%;
+    }
+    .poke-card{
+        width: 15%;
+    }
     .container-gif-overlay div img{
-        width: 30%;
+        width: 15%;
     }
 }
 /* ANIMACION BANNER IMG */
