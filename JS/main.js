@@ -141,12 +141,10 @@ botonesList.forEach(boton => boton.addEventListener("click", (event) => {
     let res = await fetch(URL + "?limit=898&offset=0");
     let data = await res.json();
     let template = document.createElement("div");
-    console.log("data",data);
 
     for (let i = 0; i <= data.results.length - 1; i++) {
         let res = await fetch(data.results[i].url);
         let json = await res.json();
-        console.log("json",json);
 
         const tipos = json.types.map(type => type.type.name);
         if (tipos.some(tipo => tipo.includes(botonId))) {
