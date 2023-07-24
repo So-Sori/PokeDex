@@ -10,6 +10,3 @@ This project has been created in order to put into practice various knowledge, m
    * [Pokemon API](https://pokeapi.co)
 # Result
 !["Poke Card  Pikachu"](https://github.com/So-Sori/PokeDex/blob/main/IMG/cardpikachu.png?raw=true)
-# Getting Started
-**live server**
-Download the live server in Visual Studio extension if you want to see the changes you make in real time on your local network.
