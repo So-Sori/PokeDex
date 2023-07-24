@@ -468,7 +468,7 @@ form{
         width: 15%;
     }
 }
-/* ANIMACION BANNER IMG */
+
 @keyframes banner-img{
     0%{
         background-image:url("../IMG/banner-img1.png");
