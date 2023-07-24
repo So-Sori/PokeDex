@@ -41,16 +41,17 @@ upBtn.addEventListener("click",()=>{
         behavior: "smooth",
       });
 })
-//PAGINACION
+
+
 let offset = 1;
 let limit = 11;
 next.addEventListener("click",()=>{
-      if (offset !== 898) {
+      if (offset !== 1281) {
         offset += 12;
         const link = document.getElementById(next.getAttribute("data-link"));
         link.scrollIntoView({behavior:"smooth"});
-        removeChildNodes(listaPokemon);
-        fetchPokemons(offset,limit);
+        removeChildNodes(listPokemon);
+        fetchPokemonsPagination(offset,limit);
       }
 });
 previous.addEventListener("click",()=>{
@@ -58,30 +59,30 @@ previous.addEventListener("click",()=>{
         offset -= 12;
         const link = document.getElementById(next.getAttribute("data-link"));
         link.scrollIntoView({behavior:"smooth"});
-        removeChildNodes(listaPokemon);
-        fetchPokemons(offset,limit);
+        removeChildNodes(listPokemon);
+        fetchPokemonsPagination(offset,limit);
     }
 });
-// CREACION DE LAS CARDS
+
 function fetchPokemon(i) {
     fetch(URL + i)
         .then((response) => response.json())
         .then(data => {
-            listaPokemon.innerHTML += showPokemon(data)
+            listPokemon.innerHTML += showPokemon(data)
         })
 }
-function fetchPokemons(offset,limit) {
+function fetchPokemonsPagination(offset,limit) {
     for (let i = offset; i <= offset + limit; i++) {
         fetchPokemon(i);
     }  
 }
-const listaPokemon = document.getElementById("all-pokemons");
-const botonesList = document.querySelectorAll(".btn-pokemon");
+const listPokemon = document.getElementById("all-pokemons");
+const btnList = document.querySelectorAll(".btn-pokemon");
 
 function showPokemon(pokemon) {
 
-    let tipos = pokemon.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
-    tipos = tipos.join('');
+    let typesPokemon = pokemon.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
+    typesPokemon = typesPokemon.join('');
 
     let stats = pokemon.stats.map((stat) => `<p class="${stat.stat.name}">${stat.stat.name}</p>\n<p class="${stat.base_stat}">${stat.base_stat}</p>`);
     stats = stats.join('');
@@ -89,20 +90,21 @@ function showPokemon(pokemon) {
     const { types } = pokemon;
     const colorOne = typeColors[types[0].type.name];
     const colorTwo = types[1] ? typeColors[types[1].type.name] : typeColors.default;
-
+    
+    const spritePokemon = pokemon.sprites.front_default ? pokemon.sprites.front_default : "IMG/pokeball_black-white.avif";
 
     const div = document.createElement("div");
 
     div.innerHTML = `
     <div class="poke-card">
         <div class="img-container">
-        <img src="${pokemon.sprites.front_default}" style="background: radial-gradient(${colorTwo} 33%, ${colorOne} 33%) 0% 0% / 5px 5px" alt="pokemon ${pokemon.name}">
+        <img src="${spritePokemon}" style="background: radial-gradient(${colorTwo} 33%, ${colorOne} 33%) 0% 0% / 5px 5px" alt="pokemon ${pokemon.name}">
         </div>
 
         <p class="poke-name">N° ${pokemon.id} ${pokemon.name}</p>
 
         <div class="type-container">
-            ${tipos}
+            ${typesPokemon}
         </div>
 
         <div class="stats-container">
@@ -114,53 +116,46 @@ function showPokemon(pokemon) {
     return div.innerHTML;
 }
 
-botonesList.forEach(boton => boton.addEventListener("click", (event) => {
-    const botonId = event.currentTarget.id;
+btnList.forEach(btn => btn.addEventListener("click", (event) => {
+    const navBtnId = event.currentTarget.id;
     let loadIcon = document.getElementById("load-icon");
-    let loader = document.getElementById("loader");
 
-    if(botonId === "ver-todos") {
-        listaPokemon.innerHTML = "";
-        fetchPokemons(offset,limit);
+    if(navBtnId === "ver-todos") {
+        listPokemon.innerHTML = "";
+        fetchPokemonsPagination(offset,limit);
         containerBtn.style.display = "block";
         loadIcon.style.display = "none";
     }
-
-    async function loaderType() {
-        loader.style.display = "block";
-        containerBtn.style.display = "none";
-        listaPokemon.innerHTML = "";
-        loader.innerHTML = `    
-        <div class="blocked-overlay">
-            <div class="container-gif-overlay">
-                <div>
-                    <img src="/IMG/cats-cute.gif" alt="">
-                </div>
-            </div>
-                    `;
-    let res = await fetch(URL + "?limit=898&offset=0");
-    let data = await res.json();
-    let template = document.createElement("div");
-
-    for (let i = 0; i <= data.results.length - 1; i++) {
-        let res = await fetch(data.results[i].url);
-        let json = await res.json();
-
-        const tipos = json.types.map(type => type.type.name);
-        if (tipos.some(tipo => tipo.includes(botonId))) {
-            template.innerHTML += showPokemon(json);
-        }
-        listaPokemon.innerHTML =  template.innerHTML;
-    }
-    
-    loader.style.display = "none"
-}
-    loaderType();
+    loaderType(navBtnId);
 
 }))
 
-// BOTON BUSCAR
-function pokeNotFound(err){
+async function loaderType(navBtnId) {
+    let loader = document.getElementById("loader");
+
+    loader.style.display = "block";
+    containerBtn.style.display = "none";
+    listPokemon.innerHTML = "";
+    loader.innerHTML = `    
+    <div class="blocked-overlay">
+        <div class="container-gif-overlay">
+            <div>
+                <img src="/IMG/cats-cute.gif" alt="">
+            </div>
+        </div>
+                `;
+
+    let res = await fetch(`https://pokeapi.co/api/v2/type/${navBtnId}/`);
+    let data = await res.json();
+    for (let i = 0; i <= data.pokemon.length - 1; i++) {
+        fetchPokemon(data.pokemon[i].pokemon.name)
+    }  
+    setInterval(()=>{
+        loader.style.display = "none"
+    },3500)
+}
+
+function inputPokemonNotFound(err){
     valueNotFound = false;
     Swal.fire({
         icon: 'error',
@@ -170,27 +165,29 @@ function pokeNotFound(err){
 }
 const searchPokemon = event => {
     event.preventDefault();
-    listaPokemon.innerHTML = "";
+    listPokemon.innerHTML = "";
     const { value } = event.target.search;
     
     if (value === "") {
-        fetchPokemons(offset,limit);
+        fetchPokemonsPagination(offset,limit);
+        containerBtn.style.display = "block";
         return;
     }
     fetch(URL + `${value.toLowerCase()}`)
     .then((response) => response.json())
     .then(data => {
-        listaPokemon.innerHTML = "";
-        listaPokemon.innerHTML = showPokemon(data);
+        listPokemon.innerHTML = "";
+        listPokemon.innerHTML = showPokemon(data);
         containerBtn.style.display = "none";
             })
-    .catch(err => pokeNotFound(err))
+    .catch(err => inputPokemonNotFound(err))
 }
+
 function removeChildNodes(parent) {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
     }
 }
 
-fetchPokemons(offset,limit);
+fetchPokemonsPagination(offset,limit);
 
